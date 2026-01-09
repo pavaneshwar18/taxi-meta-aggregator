@@ -1,0 +1,34 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/taxi_core?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: taxi_user
+    password: taxi_pass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update     # use 'update' in dev so missing tables are created automatically
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  mongodb:
+    uri: "mongodb://127.0.0.1:27017/taxi_snapshots"
+
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+
+cache:
+  price:
+    ttl-seconds: 20
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: DEBUG
