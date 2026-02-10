@@ -9,16 +9,26 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String name;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String phone;
 
-    public User() {}
+    @Column(nullable = true)
+    private String password;
+
+    @Column(nullable = false)
+    private Boolean isPhoneVerified = false;
+
+    @Column(nullable = false)
+    private Boolean isActive = true;
+
+    public User() {
+    }
 
     public User(String name, String email, String phone) {
         this.name = name;
@@ -53,5 +63,29 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getIsPhoneVerified() {
+        return isPhoneVerified;
+    }
+
+    public void setIsPhoneVerified(Boolean isPhoneVerified) {
+        this.isPhoneVerified = isPhoneVerified;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 }

@@ -2,7 +2,6 @@ package com.pavan.taxibackend.dto;
 
 import java.math.BigDecimal;
 import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
@@ -15,7 +14,8 @@ public class BookingRequest {
     private String rideType;
     private BigDecimal fareEstimate;
 
-    public BookingRequest() {}
+    public BookingRequest() {
+    }
 
     public Long getUserId() {
         return userId;
