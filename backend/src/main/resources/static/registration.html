@@ -59,6 +59,39 @@
             <div id="password-message" class="message"></div>
         </div>
 
+        <!-- Step 4: Profile Details -->
+        <div id="profile-section" class="section">
+            <h2>Complete Your Profile</h2>
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="first-name">First Name:</label>
+                    <input type="text" id="first-name" name="firstName" placeholder="Enter your first name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name:</label>
+                    <input type="text" id="last-name" name="lastName" placeholder="Enter your last name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email <span class="optional-label">(optional)</span>:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address">
+                </div>
+                <div class="form-group">
+                    <label for="profile-picture">Profile Picture <span class="optional-label">(optional)</span>:</label>
+                    <div class="upload-area" id="upload-area">
+                        <img id="picture-preview" class="picture-preview" src="" alt="Preview" style="display:none;">
+                        <div id="upload-placeholder" class="upload-placeholder">
+                            <span class="upload-icon">📷</span>
+                            <span>Click or drag to upload</span>
+                        </div>
+                        <input type="file" id="profile-picture" name="profilePicture" accept="image/*"
+                            class="file-input">
+                    </div>
+                </div>
+                <button type="submit" class="btn">Complete Registration</button>
+            </form>
+            <div id="profile-message" class="message"></div>
+        </div>
+
         <!-- Success Section -->
         <div id="success-section" class="section">
             <h2>✅ Registration Complete!</h2>

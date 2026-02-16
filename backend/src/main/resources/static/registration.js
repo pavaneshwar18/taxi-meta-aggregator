@@ -108,12 +108,12 @@ document.getElementById('password-form').addEventListener('submit', async (e) =>
         const data = await response.json();
 
         if (data.success) {
-            showMessage('password-message', 'Registration completed!', 'success');
+            showMessage('password-message', 'Password set! Now complete your profile.', 'success');
 
-            // Show success section after 1.5 seconds
+            // Show profile section after 1.5 seconds
             setTimeout(() => {
                 hideSection('password-section');
-                showSection('success-section');
+                showSection('profile-section');
             }, 1500);
         } else {
             showMessage('password-message', data.message, 'error');
@@ -121,6 +121,79 @@ document.getElementById('password-form').addEventListener('submit', async (e) =>
     } catch (error) {
         showMessage('password-message', 'Error: ' + error.message, 'error');
     }
+});
+
+// Step 4: Profile Details
+document.getElementById('profile-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const email = document.getElementById('email').value;
+    const profilePicture = document.getElementById('profile-picture').files[0];
+
+    // Build multipart form data
+    const formData = new FormData();
+
+    const profileJson = JSON.stringify({
+        phoneNumber: userPhoneNumber,
+        firstName: firstName,
+        lastName: lastName,
+        email: email || null
+    });
+    formData.append('profile', new Blob([profileJson], { type: 'application/json' }));
+
+    if (profilePicture) {
+        formData.append('profilePicture', profilePicture);
+    }
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/profile`, {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            showMessage('profile-message', 'Profile updated!', 'success');
+
+            // Show success section after 1.5 seconds
+            setTimeout(() => {
+                hideSection('profile-section');
+                showSection('success-section');
+            }, 1500);
+        } else {
+            showMessage('profile-message', data.message, 'error');
+        }
+    } catch (error) {
+        showMessage('profile-message', 'Error: ' + error.message, 'error');
+    }
+});
+
+// Profile picture preview
+document.getElementById('profile-picture').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    const preview = document.getElementById('picture-preview');
+    const placeholder = document.getElementById('upload-placeholder');
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            preview.src = event.target.result;
+            preview.style.display = 'block';
+            placeholder.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+    } else {
+        preview.style.display = 'none';
+        placeholder.style.display = 'flex';
+    }
+});
+
+// Click upload area to trigger file input
+document.getElementById('upload-area').addEventListener('click', () => {
+    document.getElementById('profile-picture').click();
 });
 
 // Utility Functions
@@ -137,3 +210,4 @@ function showMessage(messageId, text, type) {
     messageElement.textContent = text;
     messageElement.className = `message show ${type}`;
 }
+

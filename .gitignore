@@ -1,6 +1,9 @@
 # Sensitive configuration files
 backend/src/main/resources/application.properties
 
+# Uploaded files
+uploads/
+
 # Maven
 backend/target/
 backend/.mvn/

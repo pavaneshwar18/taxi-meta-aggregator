@@ -3,12 +3,14 @@ package com.pavan.taxibackend.controller;
 import com.pavan.taxibackend.dto.RegisterPhoneRequest;
 import com.pavan.taxibackend.dto.RegistrationResponse;
 import com.pavan.taxibackend.dto.SetPasswordRequest;
+import com.pavan.taxibackend.dto.UserProfileRequest;
 import com.pavan.taxibackend.dto.VerifyOtpRequest;
 import com.pavan.taxibackend.service.RegistrationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/auth/register")
@@ -41,6 +43,17 @@ public class RegistrationController {
     @PostMapping("/set-password")
     public ResponseEntity<RegistrationResponse> setPassword(@Valid @RequestBody SetPasswordRequest request) {
         RegistrationResponse response = registrationService.setPassword(request);
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * Step 4: Update user profile (name, email, profile picture)
+     */
+    @PostMapping("/profile")
+    public ResponseEntity<RegistrationResponse> updateProfile(
+            @RequestPart("profile") @Valid UserProfileRequest request,
+            @RequestPart(value = "profilePicture", required = false) MultipartFile profilePicture) {
+        RegistrationResponse response = registrationService.updateProfile(request, profilePicture);
         return ResponseEntity.ok(response);
     }
 }

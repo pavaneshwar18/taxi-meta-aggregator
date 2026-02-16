@@ -10,7 +10,10 @@ public class User {
     private Long id;
 
     @Column(nullable = true)
-    private String name;
+    private String firstName;
+
+    @Column(nullable = true)
+    private String lastName;
 
     @Column(unique = true, nullable = true)
     private String email;
@@ -21,6 +24,9 @@ public class User {
     @Column(nullable = true)
     private String password;
 
+    @Column(nullable = true)
+    private String profilePicturePath;
+
     @Column(nullable = false)
     private Boolean isPhoneVerified = false;
 
@@ -30,8 +36,9 @@ public class User {
     public User() {
     }
 
-    public User(String name, String email, String phone) {
-        this.name = name;
+    public User(String firstName, String lastName, String email, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.phone = phone;
     }
@@ -41,12 +48,20 @@ public class User {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -71,6 +86,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getProfilePicturePath() {
+        return profilePicturePath;
+    }
+
+    public void setProfilePicturePath(String profilePicturePath) {
+        this.profilePicturePath = profilePicturePath;
     }
 
     public Boolean getIsPhoneVerified() {

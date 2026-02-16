@@ -25,7 +25,10 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/register/**").permitAll()
+                        .requestMatchers("/api/auth/login").permitAll()
                         .requestMatchers("/registration.html", "/registration.js", "/registration.css").permitAll()
+                        .requestMatchers("/login.html", "/login.js", "/login.css").permitAll()
+                        .requestMatchers("/uploads/**").permitAll()
                         .anyRequest().permitAll())
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
