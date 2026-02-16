@@ -2,7 +2,7 @@
 let userPhoneNumber = '';
 
 // Base API URL
-const API_BASE_URL = 'http://localhost:8081/api/auth/register';
+const API_BASE_URL = 'http://localhost:8080/api/auth/register';
 
 // Step 1: Phone Registration
 document.getElementById('phone-form').addEventListener('submit', async (e) => {
@@ -23,7 +23,7 @@ document.getElementById('phone-form').addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (data.success) {
-            showMessage('phone-message', `Success! OTP: ${data.data.otp}`, 'success');
+            showMessage('phone-message', 'OTP sent successfully! Check your phone.', 'success');
 
             // Show OTP section after 2 seconds
             setTimeout(() => {

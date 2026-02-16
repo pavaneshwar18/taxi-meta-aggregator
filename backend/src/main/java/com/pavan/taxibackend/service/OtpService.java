@@ -1,8 +1,12 @@
 package com.pavan.taxibackend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -12,6 +16,9 @@ public class OtpService {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
+
+    @Value("${twilio.phone_number}")
+    private String twilioPhoneNumber;
 
     private static final String OTP_PREFIX = "otp:";
     private static final int OTP_LENGTH = 6;
@@ -27,11 +34,18 @@ public class OtpService {
         // Store OTP in Redis with 5-minute expiration
         redisTemplate.opsForValue().set(key, otp, OTP_VALIDITY_MINUTES, TimeUnit.MINUTES);
 
-        // For testing: log the OTP
-        System.out.println("=================================================");
-        System.out.println("OTP for " + phoneNumber + ": " + otp);
-        System.out.println("Valid for " + OTP_VALIDITY_MINUTES + " minutes");
-        System.out.println("=================================================");
+        // Send OTP via Twilio
+        try {
+            Message.creator(
+                    new PhoneNumber(phoneNumber), // To
+                    new PhoneNumber(twilioPhoneNumber), // From
+                    "Your Taxi App Verification Code is: " + otp).create();
+            System.out.println("Sent OTP to " + phoneNumber + " via Twilio");
+        } catch (Exception e) {
+            System.err.println("Failed to send SMS: " + e.getMessage());
+            // Fallback for testing/debugging
+            System.out.println("OTP for " + phoneNumber + ": " + otp);
+        }
 
         return otp;
     }

@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -53,11 +51,7 @@ public class RegistrationService {
             userRepository.save(user);
         }
 
-        // For testing: return OTP in response
-        Map<String, String> data = new HashMap<>();
-        data.put("otp", otp);
-
-        return new RegistrationResponse(true, "OTP sent successfully", data);
+        return new RegistrationResponse(true, "OTP sent successfully");
     }
 
     /**
