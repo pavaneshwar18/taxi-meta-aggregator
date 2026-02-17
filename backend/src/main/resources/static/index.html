@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RideCompare — Compare Rides, Save Money</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-brand">
+                <span class="material-symbols-outlined nav-brand-icon">local_taxi</span>
+                <span class="gradient-text">RideCompare</span>
+            </a>
+            <a href="pages/auth.html" class="btn btn-primary">Login</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg-shapes">
+            <div class="hero-shape shape-1"></div>
+            <div class="hero-shape shape-2"></div>
+            <div class="hero-shape shape-3"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Compare Rides,<br><span class="gradient-text">Save Money</span></h1>
+                <p class="hero-subtitle">Your one-stop destination for smarter travel decisions.</p>
+            </div>
+            <div class="hero-search-card glass-card">
+                <div class="hero-inputs">
+                    <div class="hero-input-wrapper">
+                        <span class="material-symbols-outlined hero-input-icon">my_location</span>
+                        <input class="input-field" type="text" id="pickup" placeholder="Pickup location">
+                    </div>
+                    <span class="material-symbols-outlined hero-swap">swap_horiz</span>
+                    <div class="hero-input-wrapper">
+                        <span class="material-symbols-outlined hero-input-icon">location_on</span>
+                        <input class="input-field" type="text" id="drop" placeholder="Drop location">
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-lg hero-compare-btn" id="compare-btn">
+                    <span class="material-symbols-outlined" style="font-size:1.2rem;">compare_arrows</span>
+                    Compare Rides
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card glass-card">
+                    <div class="stat-value gradient-text">3+</div>
+                    <div class="stat-label">Platforms Compared</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-value gradient-text">₹40+</div>
+                    <div class="stat-label">Avg. Saved Per Ride</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-value gradient-text">10k+</div>
+                    <div class="stat-label">Happy Users</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-value gradient-text">4.9</div>
+                    <div class="stat-label">User Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why <span class="gradient-text">RideCompare</span>?</h2>
+                <p>Everything you need to find the perfect ride</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <div class="feature-icon"><span class="material-symbols-outlined">search</span></div>
+                    <h3>Real‑Time Comparison</h3>
+                    <p>Compare prices, ETAs, and ratings across multiple ride platforms instantly.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon"><span class="material-symbols-outlined">savings</span></div>
+                    <h3>Best Price Guarantee</h3>
+                    <p>Always see the cheapest option — we crunch the numbers so you don't have to.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon"><span class="material-symbols-outlined">bolt</span></div>
+                    <h3>Instant Booking</h3>
+                    <p>Book directly through us. No switching between apps.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon"><span class="material-symbols-outlined">bar_chart</span></div>
+                    <h3>Ride History</h3>
+                    <p>Track all your rides, spending, and savings in one place.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It <span class="gradient-text">Works</span></h2>
+                <p>Three simple steps to your perfect ride</p>
+            </div>
+            <div class="how-grid">
+                <div class="how-card glass-card">
+                    <div class="how-step-number">STEP 01</div>
+                    <div class="how-emoji"><span class="material-symbols-outlined">pin_drop</span></div>
+                    <h3>Enter Locations</h3>
+                    <p>Type your pickup and drop‑off addresses.</p>
+                </div>
+                <div class="how-card glass-card">
+                    <div class="how-step-number">STEP 02</div>
+                    <div class="how-emoji"><span class="material-symbols-outlined">analytics</span></div>
+                    <h3>Compare Options</h3>
+                    <p>See prices, ETAs, and ratings from all platforms side by side.</p>
+                </div>
+                <div class="how-card glass-card">
+                    <div class="how-step-number">STEP 03</div>
+                    <div class="how-emoji"><span class="material-symbols-outlined">directions_car</span></div>
+                    <h3>Book & Ride</h3>
+                    <p>Pick the best deal and book instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <h2>Ready to Save on Every Ride?</h2>
+                <p>Join thousands of smart riders who never overpay.</p>
+                <a href="pages/auth.html" class="btn btn-lg">Get Started — It's Free</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 RideCompare. Built with ❤️ for smarter rides.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

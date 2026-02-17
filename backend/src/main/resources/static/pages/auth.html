@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RideCompare — Login / Sign Up</title>
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="nav-brand">
+                <span class="material-symbols-outlined nav-brand-icon">local_taxi</span>
+                <span class="gradient-text">RideCompare</span>
+            </a>
+            <a href="../index.html" class="btn btn-primary">Home</a>
+        </div>
+    </nav>
+
+    <!-- Auth Card -->
+    <div class="auth-page">
+
+        <!-- Login + Signup card -->
+        <div id="auth-container" class="auth-card">
+            <div class="auth-header">
+                <div class="brand"><span class="material-symbols-outlined"
+                        style="vertical-align:middle;font-size:1.3rem;">local_taxi</span> <span
+                        class="gradient-text">RideCompare</span></div>
+                <h1>Welcome Back</h1>
+                <p>Sign in to compare rides and save money</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Login</button>
+                <button class="auth-tab" id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
+            </div>
+
+            <!-- ===== LOGIN FORM ===== -->
+            <div id="login-section" class="section active">
+                <form id="login-form" class="auth-form">
+                    <div class="auth-field">
+                        <span class="material-symbols-outlined auth-field-icon">phone_android</span>
+                        <input type="tel" id="login-phone" placeholder="Phone Number" class="input-field" required>
+                    </div>
+                    <div class="auth-field">
+                        <span class="material-symbols-outlined auth-field-icon">lock</span>
+                        <input type="password" id="login-password" placeholder="Password" class="input-field" required>
+                        <button type="button" class="auth-toggle-pw" onclick="toggleLoginPw()">
+                            <span class="material-symbols-outlined" id="login-eye-icon">visibility</span>
+                        </button>
+                    </div>
+                    <div id="login-message" class="message"></div>
+                    <button type="submit" class="btn btn-primary btn-lg auth-submit" id="login-btn">
+                        <span id="login-btn-text">Login</span>
+                        <span id="login-spinner" class="spinner" style="display:none;"></span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- ===== SIGNUP STEP 1: Phone ===== -->
+            <div id="signup-phone-section" class="section">
+                <form id="phone-form" class="auth-form">
+                    <div class="auth-field">
+                        <span class="material-symbols-outlined auth-field-icon">phone_android</span>
+                        <input type="tel" id="phone" placeholder="Phone Number (e.g. +919876543210)" class="input-field"
+                            required>
+                    </div>
+                    <div id="phone-message" class="message"></div>
+                    <button type="submit" class="btn btn-primary btn-lg auth-submit" id="phone-btn">
+                        <span id="phone-btn-text">Send OTP</span>
+                        <span id="phone-spinner" class="spinner" style="display:none;"></span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- ===== SIGNUP STEP 2: OTP ===== -->
+            <div id="otp-section" class="section">
+                <form id="otp-form" class="auth-form">
+                    <p class="step-info">OTP sent to <strong id="otp-phone-display"></strong></p>
+                    <div class="auth-field">
+                        <span class="material-symbols-outlined auth-field-icon">key</span>
+                        <input type="text" id="otp" placeholder="Enter OTP" class="input-field" maxlength="6" required>
+                    </div>
+                    <div id="otp-message" class="message"></div>
+                    <button type="submit" class="btn btn-primary btn-lg auth-submit">
+                        <span id="otp-btn-text">Verify OTP</span>
+                        <span id="otp-spinner" class="spinner" style="display:none;"></span>
+                    </button>
+                    <button type="button" class="btn btn-secondary auth-back-btn"
+                        onclick="goBackTo('signup-phone-section')">
+                        <span class="material-symbols-outlined" style="font-size:1rem;">arrow_back</span> Back
+                    </button>
+                </form>
+            </div>
+
+            <!-- ===== SIGNUP STEP 3: Password ===== -->
+            <div id="password-section" class="section">
+                <form id="password-form" class="auth-form">
+                    <div class="auth-field">
+                        <span class="material-symbols-outlined auth-field-icon">lock</span>
+                        <input type="password" id="password" placeholder="Password" class="input-field" required>
+                        <button type="button" class="auth-toggle-pw" onclick="toggleSignupPw()">
+                            <span class="material-symbols-outlined" id="signup-eye-icon">visibility</span>
+                        </button>
+                    </div>
+                    <div class="auth-field">
+                        <span class="material-symbols-outlined auth-field-icon">lock</span>
+                        <input type="password" id="confirm-password" placeholder="Confirm Password" class="input-field"
+                            required>
+                    </div>
+                    <div id="password-message" class="message"></div>
+                    <button type="submit" class="btn btn-primary btn-lg auth-submit">
+                        <span id="password-btn-text">Set Password</span>
+                        <span id="password-spinner" class="spinner" style="display:none;"></span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- ===== SIGNUP STEP 4: Profile ===== -->
+            <div id="profile-form-section" class="section">
+                <form id="profile-form" class="auth-form">
+                    <div class="auth-field">
+                        <span class="material-symbols-outlined auth-field-icon">person</span>
+                        <input type="text" id="first-name" placeholder="First Name" class="input-field" required>
+                    </div>
+                    <div class="auth-field">
+                        <span class="material-symbols-outlined auth-field-icon">person</span>
+                        <input type="text" id="last-name" placeholder="Last Name" class="input-field" required>
+                    </div>
+                    <div class="auth-field">
+                        <span class="material-symbols-outlined auth-field-icon">mail</span>
+                        <input type="email" id="email" placeholder="Email Address" class="input-field">
+                    </div>
+                    <div class="auth-field file-field">
+                        <span class="material-symbols-outlined auth-field-icon">photo_camera</span>
+                        <label class="file-label" id="file-label-text">
+                            Profile Picture (optional)
+                            <input type="file" id="profile-picture" accept="image/*" class="file-input">
+                        </label>
+                    </div>
+                    <div id="profile-message" class="message"></div>
+                    <button type="submit" class="btn btn-primary btn-lg auth-submit">
+                        <span id="profile-btn-text">Complete Registration</span>
+                        <span id="profile-spinner" class="spinner" style="display:none;"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Profile Card (shown after login) -->
+        <div id="profile-display-section" class="section" style="width:100%;display:none;">
+            <div class="profile-card" style="margin:0 auto;">
+                <div class="profile-header">
+                    <div class="avatar-wrapper">
+                        <img id="profile-avatar" class="avatar" src="" alt="Profile Picture">
+                        <div id="avatar-placeholder" class="avatar-placeholder">
+                            <span class="material-symbols-outlined" style="font-size:2rem;">person</span>
+                        </div>
+                    </div>
+                    <h2 id="profile-name" class="profile-name"></h2>
+                </div>
+                <div class="profile-details">
+                    <div class="detail-row">
+                        <span class="material-symbols-outlined detail-icon">phone_android</span>
+                        <div class="detail-info">
+                            <span class="detail-label">Phone</span>
+                            <span id="profile-phone" class="detail-value"></span>
+                        </div>
+                    </div>
+                    <div class="detail-row" id="email-row" style="display:none;">
+                        <span class="material-symbols-outlined detail-icon">mail</span>
+                        <div class="detail-info">
+                            <span class="detail-label">Email</span>
+                            <span id="profile-email" class="detail-value"></span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../js/auth.js"></script>
+</body>
+
+</html>

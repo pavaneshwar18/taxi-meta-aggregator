@@ -10,8 +10,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        // Default landing page → login
-        registry.addRedirectViewController("/", "/login.html");
+        // Default landing page
+        registry.addRedirectViewController("/", "/index.html");
     }
 
     @Override
